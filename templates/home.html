@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <!-- HEADING -->
+    <div class="container-fluid d-flex justify-content-center mb-3">
+        <h1 class="fs-1 lead">
+            Compare prices & get the best 
+        </h1>
+    </div>
+
+    <!-- INPUT FORM -->
+    <section class="container-fluid p-4">
+        <form action="/" method="POST">
+            <div class="mb-3">
+                <label for="technology" class="form-label">Device name:</label>
+                <input type="text" class="form-control" name="tech" id="technology" placeholder="Eg: Acer Nitro 5">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </section>
+
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                {% for name,price in site1.items() %}
+                    <div class="card m-2" style="width: 40rem;">
+                        <div class="card-header">
+                            {{ name }}
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ price }}</li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {% for name,price in site2.items() %}
+                <div class="card m-2" style="width: 40rem;">
+                    <div class="card-header">
+                        {{ name }}
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ price }}</li>
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
