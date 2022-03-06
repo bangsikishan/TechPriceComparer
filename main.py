@@ -17,7 +17,7 @@ def hello_world():
             data_1.clear()
             data_2.clear()
             
-            obj = Search(name)
+            obj = Search(name.upper())
             data_1, data_2 = obj.open_url()
         else:
             print("[+] Empty search!")
