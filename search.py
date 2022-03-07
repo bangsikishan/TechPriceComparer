@@ -18,12 +18,18 @@ class Search:
         self.SPLITTED_NAME = name.split(" ")
         self.FORMATTED_NAME = "+".join(self.SPLITTED_NAME)
 
+        self.URL.clear()
         self.URL.append(f"https://itti.com.np/catalogsearch/result/index/?cat=&product_list_limit=24&q={self.FORMATTED_NAME}")
         self.URL.append(f"https://bigbyte.com.np/page/1/?s={self.FORMATTED_NAME}&post_type=product&dgwt_wcas=1")
 
 
     # FUNCTION TO SEND GET REQUESTS TO WEBSITES
     def open_url(self):
+        self.SITE_1.clear()
+        self.SITE_2.clear()
+
+
+        
         i = 0
         while i < len(self.URL):
             site = requests.get(self.URL[i])
@@ -50,7 +56,7 @@ class Search:
             prices = parsed_html.find_all("bdi")
 
             for (name,price) in zip(names,prices):
-                if name.string.upper().__contains__(self.NAME):
+                if name.string.upper().__contains__(self.SPLITTED_NAME[0]):
                     self.SITE_2[name.string] = price.text
 
 
