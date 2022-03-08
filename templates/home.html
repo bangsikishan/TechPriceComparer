@@ -21,10 +21,25 @@
         </form>
     </section>
 
-    <section class="container-fluid">
-        <div class="row text-center">
-            <div class="col-md-12 col-lg-6">
-                {% for name,price in site1.items() %}
+    {% if name, price %}
+        <section class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-12 col-lg-6">
+                    {% for name,price in site1.items() %}
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="card m-2" style="width: 40rem;">
+                                <div class="card-header">
+                                    {{ name }}
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{ price }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    {% for name,price in site2.items() %}
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="card m-2" style="width: 40rem;">
                             <div class="card-header">
@@ -35,22 +50,9 @@
                             </ul>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-            <div class="col-md-12 col-lg-6">
-                {% for name,price in site2.items() %}
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="card m-2" style="width: 40rem;">
-                        <div class="card-header">
-                            {{ name }}
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ price }}</li>
-                        </ul>
-                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 {% endblock %}

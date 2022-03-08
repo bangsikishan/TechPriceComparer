@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block main %}
+    <!-- HEADING -->
+    <div class="container-fluid d-flex justify-content-center mb-3">
+        <h1 class="fs-1 lead">
+            Login 
+        </h1>
+    </div>
+
+    <!-- FORM  -->
+    <div class="container-md">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                {{ form.email.label(class="form-label") }}
+                
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.password.label(class="form-label") }}
+
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="form-check mt-3 mb-2">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </form>
+        <div class="mt-2">
+            <small><a href="#">Forgot Password?</a></small>
+        </div>
+    </div>
+
+    <div class="container-lg border-top pt-3 mt-3">
+        <small class="text-muted">
+            Need An Account? <a class="ml-2" href="{{ url_for('register') }}">Register</a>
+        </small>
+    </div>
+{% endblock %}

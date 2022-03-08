@@ -18,6 +18,7 @@ class Search:
         self.SPLITTED_NAME = name.split(" ")
         self.FORMATTED_NAME = "+".join(self.SPLITTED_NAME)
 
+        # print("[+] Clearing URL List...")
         self.URL.clear()
         self.URL.append(f"https://itti.com.np/catalogsearch/result/index/?cat=&product_list_limit=24&q={self.FORMATTED_NAME}")
         self.URL.append(f"https://bigbyte.com.np/page/1/?s={self.FORMATTED_NAME}&post_type=product&dgwt_wcas=1")
@@ -25,11 +26,11 @@ class Search:
 
     # FUNCTION TO SEND GET REQUESTS TO WEBSITES
     def open_url(self):
+        # print("[+] Clearing dictionaries...")
         self.SITE_1.clear()
         self.SITE_2.clear()
 
-
-        
+        # print("[+] Sending request...")
         i = 0
         while i < len(self.URL):
             site = requests.get(self.URL[i])
@@ -42,6 +43,7 @@ class Search:
 
     # FUNCTION TO PARSE HTML AND EXTRACT DATA
     def parse_html(self, html, count):
+        # print(f"[+] Parsing HTML {self.URL[count]}...")
         parsed_html = BeautifulSoup(html, "html.parser")
 
         if count == 0:
